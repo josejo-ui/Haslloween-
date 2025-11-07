@@ -2,26 +2,26 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Nuestro Haslloween 2025 🎃</title>
+    <title>Nuestro Halloween 2025 🎃</title>
     <style>
         body {
             margin: 0;
-            height: 100vh; /* Para que el contenedor de animación cubra toda la altura */
-            background: #1a1a1a; /* Fondo oscuro de Halloween */
+            height: 100vh;
+            background: #1a1a1a;
             font-family: Arial, sans-serif;
-            color: #ff9900; /* Texto naranja */
+            color: #ff9900;
             padding: 40px 20px;
             text-align: center;
-            overflow: hidden; /* Oculta barras de desplazamiento */
-            position: relative; /* Necesario para el z-index */
+            overflow: hidden; 
+            position: relative;
         }
 
         h1 {
-            color: #ff4500; /* Naranja más intenso */
+            color: #ff4500;
             margin-bottom: 30px;
             font-size: 3em;
             text-shadow: 2px 2px 5px #000;
-            position: relative; /* Asegura que el título esté por encima de las animaciones */
+            position: relative;
             z-index: 2;
         }
 
@@ -32,7 +32,7 @@
             gap: 25px;
             max-width: 1400px;
             margin: 0 auto;
-            position: relative; /* Asegura que la galería esté por encima de las animaciones */
+            position: relative;
             z-index: 2;
         }
 
@@ -70,7 +70,7 @@
             background-color: rgba(0, 0, 0, 0.7);
             color: white;
             padding: 8px 0;
-            font-size: 1.1em;
+            font-size: 1.5em; /* Aumentamos el tamaño del emoji */
             font-weight: bold;
         }
 
@@ -81,29 +81,190 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            pointer-events: none; /* Permite hacer clic a través de él */
-            z-index: 1; /* Detrás del título y la galería */
-            overflow: hidden; /* Para que los elementos no generen scroll */
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
         }
 
         .floating-element {
             position: absolute;
-            animation: moveAndFade 10s linear forwards; /* Duración de la animación */
+            animation: moveAndFade 10s linear forwards;
             pointer-events: none;
-            opacity: 0.8; /* Opacidad base para todos los elementos flotantes */
+            opacity: 0.8;
         }
 
         /* Estilos específicos para las fotos flotantes */
         .floating-photo {
-            width: 100px; /* Tamaño de las fotos flotantes */
+            width: 100px;
             height: auto;
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            opacity: 0.7; /* Ligeramente más translúcidas */
+            opacity: 0.7;
         }
 
         /* Estilos específicos para los emojis de Halloween */
         .floating-halloween-emoji {
-            font-size: 2.5em; /* Tamaño de los emojis */
+            font-size: 2.5em;
         }
+
+        /* Estilos específicos para los corazones con opacidad */
+        .floating-heart {
+            font-size: 2em;
+            opacity: 0.5;
+        }
+
+        @keyframes moveAndFade {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(var(--final-x), var(--final-y)) scale(0.6);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎃 Nuestro Halloween 2025 👻</h1>
+
+    <div id="gallery">
+        <div class="photo-card">
+            <img src="11.jpg" alt="Fantasmas de Halloween">
+            <div class="photo-caption">👻</div>
+        </div>
+        
+        <div class="photo-card">
+            <img src="10.jpg" alt="Calabaza en el suelo">
+            <div class="photo-caption">🎃</div>
+        </div>
+
+        <div class="photo-card">
+            <img src="9.jpg" alt="Persona con máscara">
+            <div class="photo-caption">👤</div>
+        </div>
+
+        <div class="photo-card">
+            <img src="8.jpg" alt="Calabaza escondida">
+            <div class="photo-caption">🕷️</div>
+        </div>
+
+        <div class="photo-card">
+            <img src="7.jpg" alt="Niño con calabaza pequeña">
+            <div class="photo-caption">🧡</div>
+        </div>
+
+        <div class="photo-card">
+            <img src="6.jpg" alt="Calavera y calabaza">
+            <div class="photo-caption">💀</div>
+        </div>
+        
+        <div class="photo-card">
+            <img src="5.jpg" alt="Pareja en el bosque">
+            <div class="photo-caption">🦇</div>
+        </div>
+
+        <div class="photo-card">
+            <img src="4.jpg" alt="Pareja mirando">
+            <div class="photo-caption">✨</div>
+        </div>
+
+        <div class="photo-card">
+            <img src="3.jpg" alt="Pareja sentada en el pasto">
+            <div class="photo-caption">🌙</div>
+        </div>
+        
+        <div class="photo-card">
+            <img src="2.jpg" alt="Pareja agarrados de la mano">
+            <div class="photo-caption">💜</div>
+        </div>
+        
+        <div class="photo-card">
+            <img src="1.jpg" alt="Pareja agarrados de la mano">
+            <div class="photo-caption">❤️</div>
+        </div>
+    </div>
+    
+    <div id="animation-container"></div> 
+    
+    <audio id="background-audio" autoplay loop controls>
+        <source src="Audio Haslloween.mp3" type="audio/mpeg"> 
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    
+<script>
+        const animationContainer = document.getElementById('animation-container');
+        
+        const floatingPhotos = [
+            '11.jpg', '10.jpg', '9.jpg', '8.jpg', '7.jpg', 
+            '6.jpg', '5.jpg', '4.jpg', '3.jpg', '2.jpg', '1.jpg',
+        ];
+
+        const halloweenEmojis = ['👻', '🎃', '🕸️', '🕷️', '🦇', '🌕', '🕯️'];
+
+        const coloredHearts = ['🧡', '💜'];
+
+        // Función general para crear elementos flotantes
+        function createFloatingElement(type) {
+            const element = (type === 'photo') ? document.createElement('img') : document.createElement('span');
+            element.classList.add('floating-element');
+            
+            let content;
+            if (type === 'photo') {
+                content = floatingPhotos[Math.floor(Math.random() * floatingPhotos.length)];
+                element.src = content;
+                element.classList.add('floating-photo');
+            } else if (type === 'halloweenEmoji') {
+                content = halloweenEmojis[Math.floor(Math.random() * halloweenEmojis.length)];
+                element.innerHTML = content;
+                element.classList.add('floating-halloween-emoji');
+            } else if (type === 'coloredHeart') {
+                content = coloredHearts[Math.floor(Math.random() * coloredHearts.length)];
+                element.innerHTML = content;
+                element.classList.add('floating-heart');
+            }
+
+            // Posición de inicio aleatoria desde los bordes
+            const side = Math.floor(Math.random() * 4);
+            let startX, startY;
+
+            if (side === 0) { // Desde arriba
+                startX = Math.random() * window.innerWidth;
+                startY = -100;
+            } else if (side === 1) { // Desde la derecha
+                startX = window.innerWidth + 100;
+                startY = Math.random() * window.innerHeight;
+            } else if (side === 2) { // Desde abajo
+                startX = Math.random() * window.innerWidth;
+                startY = window.innerHeight + 100;
+            } else { // Desde la izquierda
+                startX = -100;
+                startY = Math.random() * window.innerHeight;
+            }
+
+            element.style.left = `${startX}px`;
+            element.style.top = `${startY}px`;
+            
+            // Posición final aleatoria
+            const finalX = Math.random() * window.innerWidth;
+            const finalY = Math.random() * window.innerHeight;
+
+            element.style.setProperty('--final-x', `${finalX - startX}px`);
+            element.style.setProperty('--final-y', `${finalY - startY}px`);
+
+            animationContainer.appendChild(element);
+
+            setTimeout(() => {
+                element.remove();
+            }, 10000); 
+        }
+
+        // Intervalos para crear los diferentes tipos de elementos flotantes
+        setInterval(() => createFloatingElement('photo'), 1500); 
+        setInterval(() => createFloatingElement('halloweenEmoji'), 500);
+        setInterval(() => createFloatingElement('coloredHeart'), 300);
+
+    </script>
+</body>
+</html>
 
