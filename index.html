@@ -24,6 +24,14 @@
             position: relative; /* Asegura que el título esté por encima de las animaciones */
             z-index: 2;
         }
+        
+        /* Estilo para el reproductor de audio, asegurando que se vea bien */
+        #audio-player {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2; /* Para que esté sobre las animaciones */
+        }
+        /* Fin del estilo de audio */
 
         #gallery {
             display: flex;
@@ -106,161 +114,21 @@
         .floating-halloween-emoji {
             font-size: 2.5em; /* Tamaño de los emojis */
         }
-
-        /* Estilos específicos para los corazones con opacidad */
-        .floating-heart {
-            font-size: 2em; /* Tamaño de los corazones */
-            opacity: 0.5; /* 50% de opacidad */
-        }
-
-        @keyframes moveAndFade {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-            100% {
-                transform: translate(var(--final-x), var(--final-y)) scale(0.6); /* Se encogen un poco */
-                opacity: 0; /* Desaparecen al final */
-            }
-        }
     </style>
 </head>
 <body>
+    <h1>Nuestro Haslloween 2025 🎃</h1>
 
-    <h1>🎃 Nuestro Haslloween 2025 👻</h1>
-
-    <div id="gallery">
-        <div class="photo-card">
-            <img src="1.jpg" alt="Foto 1: Primera foto de Halloween">
-            <div class="photo-caption">Momento 1 - Juntos</div>
-        </div>
-        
-        <div class="photo-card">
-            <img src="2.jpg" alt="Foto 2: Foto de Angie">
-            <div class="photo-caption">Momento 2 - Angie</div>
-        </div>
-
-        <div class="photo-card">
-            <img src="3.jpg" alt="Foto 3: Fantasmas">
-            <div class="photo-caption">Momento 3 - Fantasmas Jugando</div>
-        </div>
-
-        <div class="photo-card">
-            <img src="4.jpg" alt="Foto 4: Calavera y Calabaza">
-            <div class="photo-caption">Momento 4 - El Dúo Macabro</div>
-        </div>
-
-        <div class="photo-card">
-            <img src="5.jpg" alt="Foto 5: Fantasmas de Noche">
-            <div class="photo-caption">Momento 5 - En la Oscuridad</div>
-        </div>
-
-        <div class="photo-card">
-            <img src="6.jpg" alt="Foto 6: Foto de José">
-            <div class="photo-caption">Momento 6 - Máscara</div>
-        </div>
-        
-        <div class="photo-card">
-            <img src="7.jpg" alt="Foto 7: Fantasmas con Calabazas">
-            <div class="photo-caption">Momento 7 - Calabazas y Sábanas</div>
-        </div>
-
-        <div class="photo-card">
-            <img src="8.jpg" alt="Foto 8: Angie con Calabaza en la Cabeza">
-            <div class="photo-caption">Momento 8 - 🕸️</div>
-        </div>
-
-        <div class="photo-card">
-            <img src="9.jpg" alt="Foto 9: Retrato de Angie">
-            <div class="photo-caption">Momento 9 - Retrato Halloween</div>
-        </div>
-
-        <div class="photo-card">
-            <img src="10.jpg" alt="Foto 10: Fantasmas sentados">
-            <div class="photo-caption">Momento 10 - Fantasmas al Acecho</div>
-        </div>
-
-        <div class="photo-card">
-            <img src="11.jpg" alt="Foto 11: Foto con Calabazas">
-            <div class="photo-caption">Momento 11 - makeup 💄</div>
-        </div>
+    <div id="audio-player">
+        <audio controls autoplay loop muted>
+            <source src="audio Haslloween.mp3" type="audio/mpeg">
+            Tu navegador no soporta el elemento de audio.
+        </audio>
     </div>
-    
-    <div id="animation-container"></div> 
-<script>
-        const animationContainer = document.getElementById('animation-container');
-        
-        // Nombres de tus fotos de Halloween para las animaciones
-        const floatingPhotos = [
-            '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', 
-            '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg',
-        ];
+    <div id="gallery">
+        </div>
 
-        // Emojis de Halloween
-        const halloweenEmojis = ['👻', '🎃', '🕸️', '🕷️', '🦇', '🌕', '🕯️'];
-
-        // Corazones naranjas y morados
-        const coloredHearts = ['🧡', '💜'];
-
-        // Función general para crear elementos flotantes
-        function createFloatingElement(type) {
-            const element = (type === 'photo') ? document.createElement('img') : document.createElement('span');
-            element.classList.add('floating-element');
-            
-            let content;
-            if (type === 'photo') {
-                content = floatingPhotos[Math.floor(Math.random() * floatingPhotos.length)];
-                element.src = content;
-                element.classList.add('floating-photo');
-            } else if (type === 'halloweenEmoji') {
-                content = halloweenEmojis[Math.floor(Math.random() * halloweenEmojis.length)];
-                element.innerHTML = content;
-                element.classList.add('floating-halloween-emoji');
-            } else if (type === 'coloredHeart') {
-                content = coloredHearts[Math.floor(Math.random() * coloredHearts.length)];
-                element.innerHTML = content;
-                element.classList.add('floating-heart');
-            }
-
-            // Posición de inicio aleatoria desde los bordes
-            const side = Math.floor(Math.random() * 4); // 0: top, 1: right, 2: bottom, 3: left
-            let startX, startY;
-
-            if (side === 0) { // Desde arriba
-                startX = Math.random() * window.innerWidth;
-                startY = -100;
-            } else if (side === 1) { // Desde la derecha
-                startX = window.innerWidth + 100;
-                startY = Math.random() * window.innerHeight;
-            } else if (side === 2) { // Desde abajo
-                startX = Math.random() * window.innerWidth;
-                startY = window.innerHeight + 100;
-            } else { // Desde la izquierda
-                startX = -100;
-                startY = Math.random() * window.innerHeight;
-            }
-
-            element.style.left = `${startX}px`;
-            element.style.top = `${startY}px`;
-            
-            // Posición final aleatoria en cualquier parte de la pantalla
-            const finalX = Math.random() * window.innerWidth;
-            const finalY = Math.random() * window.innerHeight;
-
-            element.style.setProperty('--final-x', `${finalX - startX}px`);
-            element.style.setProperty('--final-y', `${finalY - startY}px`);
-
-            animationContainer.appendChild(element);
-
-            setTimeout(() => {
-                element.remove();
-            }, 10000); // Duración total de la animación
-        }
-
-        // Intervalos para crear los diferentes tipos de elementos flotantes
-        setInterval(() => createFloatingElement('photo'), 1500); // Fotos cada 1.5 segundos
-        setInterval(() => createFloatingElement('halloweenEmoji'), 500); // Emojis de Halloween cada 0.5 segundos
-        setInterval(() => createFloatingElement('coloredHeart'), 300); // Corazones cada 0.3 segundos
-
-    </script>
+    <div id="animation-container">
+        </div>
 </body>
 </html>
